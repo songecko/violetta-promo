@@ -1,0 +1,30 @@
+services:
+    context:
+        class:     Symfony\Component\Routing\RequestContext
+    resolver:
+        class:     Gecky\Controller\ControllerResolver
+        arguments: [ '@service_container' ]
+    listener.router:
+        class:     Symfony\Component\HttpKernel\EventListener\RouterListener
+        arguments: [ '@matcher' ]
+    listener.response:
+        class:     Symfony\Component\HttpKernel\EventListener\ResponseListener
+        arguments: [ 'UTF-8' ]
+    listener.exception:
+        class:     Symfony\Component\HttpKernel\EventListener\ExceptionListener
+        arguments: [ 'Gecky\\Controller\\ErrorController::exceptionAction' ]
+    listener.app:
+        class:     Odiseo\ViolettaPromo\EventListener\AppListener
+        arguments: [ '@service_container' ]
+    dispatcher:
+        class:     Symfony\Component\EventDispatcher\EventDispatcher
+        calls: 
+            - [ addSubscriber, [ '@listener.router' ]]
+            - [ addSubscriber, [ '@listener.response' ]]
+            - [ addSubscriber, [ '@listener.exception' ]]
+            - [ addSubscriber, [ '@listener.app' ]]
+    database:
+        class:     Gecky\Database\Db
+        arguments: [{ host: '%database_host%', username: '%database_username%', password: '%database_password%', database: '%database_name%' }]
+    mobile_detect:
+        class:     Mobile_Detect     

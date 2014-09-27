@@ -1,0 +1,3 @@
+homepage:
+    path:     /
+    defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::indexAction' }

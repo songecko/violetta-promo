@@ -1,0 +1,108 @@
+.container {
+	width: 100% !important;
+}
+
+table tr td.number {
+	text-align: right;
+}
+
+.logo {
+	width: 150px;
+	margin: 0 auto;
+}
+
+.logo img {
+	margin: 0 auto;
+	display: block;
+}
+
+.table .actions a {
+	font-size: 20px;
+	margin-right: 5px;
+	text-decoration: none;
+}
+
+.table .actions a:hover {
+	text-decoration: none;
+}
+
+.table .actions a.remove {
+	margin-left: 10px;
+	float: right;
+}
+
+/** VIDEO MODALS **/
+.videoModal button {
+	position: absolute;
+	top: 46%;
+	background: none;
+	left: 50%;
+	margin: -47px 0 0 -47px;
+	z-index: 999999;
+	border: none;	
+}
+
+.videoModal .modal-dialog {
+	display: table;
+	width: 100%;	
+	height: 100%;
+	margin: 0;
+}
+
+.videoModal .modal-dialog .modal-content {
+	display: table-cell;
+	vertical-align: middle;
+	background: transparent;
+}
+
+.videoModal .modal-dialog .modal-content .modal-body {
+	width: 810px;
+	background: #000000;
+}
+
+.videoModal .modal-dialog .modal-content .modal-body .close 
+{
+	top: 35px;
+	right: 8px;
+	left: auto;
+	opacity: 1;
+	background: gray;
+}
+
+.videoModal .content {
+	width: 640px;
+	margin: 0 auto;
+	position: relative;
+}
+
+#alertModal .message {
+	font-size: 12px;
+}
+
+.login {
+	width: 400px;
+	margin: 20px auto;
+}
+
+.login form {
+	width: 80%;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+.error {
+	padding: 10px 0;
+	width: 400px;
+	margin: 24px auto;
+	text-align: center;
+	color: gray;
+	border-radius: 6px;
+}
+
+#instructions .list-group {
+	display: none;
+}
+
+#instructions .panel-heading {
+	cursor: pointer;
+}
