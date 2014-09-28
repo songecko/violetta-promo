@@ -26,5 +26,8 @@ services:
     database:
         class:     Gecky\Database\Db
         arguments: [{ host: '%database_host%', username: '%database_username%', password: '%database_password%', database: '%database_name%' }]
+        calls: 
+            - [ addEntityNamespace, [{'config/doctrine/': 'Odiseo\ViolettaPromo\Model'}]]
+            
     mobile_detect:
-        class:     Mobile_Detect     
+        class:     Mobile_Detect

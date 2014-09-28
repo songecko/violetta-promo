@@ -2,8 +2,8 @@
 
 require_once __DIR__.'/vendor/autoload.php';
 
-use DtvFbapp\Console\Command\DatabaseCreateTablesCommand;
-use DtvFbapp\Console\Command\DatabaseDropTablesCommand;
+use Odiseo\ViolettaPromo\Console\Command\DatabaseCreateTablesCommand;
+use Odiseo\ViolettaPromo\Console\Command\DatabaseDropTablesCommand;
 use Gecky\Console\Application;
 
 $application = new Application();

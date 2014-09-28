@@ -17,12 +17,13 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\View\DefaultView;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Doctrine\DBAL\DBALException;
+use Odiseo\ViolettaPromo\Model\User;
 
 
 class MainController extends Controller
 {		
 	public function indexAction(Request $request)
-	{
+	{		
 		return $this->render('Main/index.php');
 	}
 	
