@@ -1,0 +1,31 @@
+Odiseo\ViolettaPromo\Model\UserParticipation:
+    type: entity
+    table: user_participation
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            column: created_at
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: participations
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+                nullable: false
+        code:
+            targetEntity: Code
+            joinColumn:
+                name: code_id
+                referencedColumnName: id
+                nullable: false
+        product:
+            targetEntity: Product
+            joinColumn:
+                name: product_id
+                referencedColumnName: id

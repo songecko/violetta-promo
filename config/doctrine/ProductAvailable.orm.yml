@@ -1,0 +1,23 @@
+Odiseo\ViolettaPromo\Model\ProductAvailable:
+    type: entity
+    table: product_available
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        date:
+            type: date
+        quantity:
+            type: integer
+        createdAt:
+            type: datetime
+            column: created_at
+    manyToOne:
+        product:
+            targetEntity: Product
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+                nullable: false

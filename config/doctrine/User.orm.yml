@@ -24,3 +24,8 @@ Odiseo\ViolettaPromo\Model\User:
             nullable: true
         createdAt:
             type: datetime
+            column: created_at
+    oneToMany:
+        participations:
+            targetEntity: UserParticipation
+            mappedBy: user
