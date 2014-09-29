@@ -8,7 +8,7 @@
 interface iDataProviderService
 {
 	
-	public const SERVICE_NAME = "DATA_PROVIDER_SERVICE";    
+	const SERVICE_NAME = "DATA_PROVIDER_SERVICE";    
 	 
 	/**
 	 * This method is to retrive the list of participation
