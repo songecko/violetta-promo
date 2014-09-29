@@ -1,15 +1,15 @@
 <?php
 
 
-public class DefaultUtilHelper implements iUtilHelper
+class DefaultUtilHelper implements iUtilHelper
 {
 	
-	private iDataProviderService dataProviderService = new DoctrineDbService();
+	private  $dataProviderService;
 	
 	
 	 function __construct($iDataProviderService)
 	  {
-	    $this->dataProviderService = $iDataProviderService;
+	    $this->dataProviderService = new $iDataProviderService();
 	  }
 	
 	
