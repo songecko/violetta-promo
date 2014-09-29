@@ -1,5 +1,8 @@
 <?php
 
+
+namespace Odiseo\ViolettaPromo\Services;
+
 /**
  *  This interface define the standard behaviour for each data provider.
  * @author Petium

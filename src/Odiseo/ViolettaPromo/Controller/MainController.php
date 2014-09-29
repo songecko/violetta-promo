@@ -24,6 +24,9 @@ class MainController extends Controller
 {		
 	public function indexAction(Request $request)
 	{		
+		$helper  = $this->get('util_helper');
+		$isValid = $helper->validateCode('3232323');
+		d($isValid);
 		return $this->render('Main/index.php');
 	}
 	

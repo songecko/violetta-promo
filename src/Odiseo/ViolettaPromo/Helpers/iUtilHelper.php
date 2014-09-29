@@ -1,5 +1,6 @@
 <?php
 
+namespace Odiseo\ViolettaPromo\Helpers;
 
 /**
  * This interface defines behaviour for utilites helpers functions.
