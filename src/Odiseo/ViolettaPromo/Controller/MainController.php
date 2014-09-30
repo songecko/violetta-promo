@@ -41,13 +41,18 @@ class MainController extends Controller
 		{
 			
 			$registeredUser = $iUtilHelper->registerParticipant($dni, $validCode);
-			d($registeredUser); die;
 			$userParticipation = $iUtilHelper->participate($registeredUser, $validCode);
+			
+		
+				
 			if ($userParticipation != null)//it is able to participate
 			{
-				$winProduct = $iUtilHelper->executeConcourse($registeredUser);
+				$winProduct = $iUtilHelper->executeConcourse($registeredUser,$userParticipation );
 				if ($winProduct != null)
 				{
+					
+					
+					
 					// TODO: gano -> mostrar pantalla ganador
 				}
 				else

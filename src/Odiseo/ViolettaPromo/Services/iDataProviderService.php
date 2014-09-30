@@ -34,7 +34,7 @@ interface iDataProviderService
 	
 	public function findWinners();
 	
-	public function insertWinner($winner);
+	public function updateParcipantToWinner($winner);
 	
 	public function countParticipants();
 	
@@ -57,7 +57,7 @@ interface iDataProviderService
 	public function insertUserParticipation($userParticipation);
 	
 	
-	public function findParticipationByUserId($user_id, $date );
+	public function findParticipationBy($user_id , $code_id, $date);
 	
 		
 }

@@ -46,11 +46,16 @@ class DefaultUtilHelper implements iUtilHelper
 	}
 	
 	public function participate($registeredUser, $validCode){
-		$userParticipation = $this->dataProviderService->findParticipationByUserId($registeredUser->getId());
+		
+		$today =  new \DateTime()  ;
+		$userParticipation = $this->dataProviderService->findParticipationBy($registeredUser->getId(),$validCode->getId(),  $today  );
 		
 		if ($userParticipation != null)//ya participo este día
+		{		
 			return null;
-		else{//registro nueva participación
+		}
+		else{
+			//registro nueva participación
 			$userParticipation  = new UserParticipation();
 			$userParticipation->setUser($registeredUser);
 			$userParticipation->setCode($validCode);
@@ -64,7 +69,7 @@ class DefaultUtilHelper implements iUtilHelper
 	 * (non-PHPdoc)
 	 * @see \Odiseo\ViolettaPromo\Helpers\iUtilHelper::executeConcourse()
 	 */
-	public function executeConcourse($user){
+	public function executeConcourse($user, $userParticipation){
 		
 		$participantsQuantity = $this->dataProviderService->countParticipants();
 		
@@ -75,9 +80,11 @@ class DefaultUtilHelper implements iUtilHelper
 			if ($productQuantity > 0){
 				$isWinner = $this->doRandom($participantsQuantity, $productQuantity);
 				if ($isWinner){
-					$prdAvailability->setQuantity( $productQuantity - 1);
 					
+					$prdAvailability->setQuantity( $productQuantity - 1);
 					$this->dataProviderService->updateProductAvailability($prdAvailability);
+					$userParticipation->setProduct($prdAvailability->getProduct());
+					$this->dataProviderService->updateParcipantToWinner($userParticipation);
 					return $prdAvailability->getProduct();
 				}
 			}

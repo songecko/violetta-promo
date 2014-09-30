@@ -61,7 +61,7 @@ class  DoctrineDbService implements iDataProviderService
 		$repository = $em->getRepository('Odiseo\ViolettaPromo\Model\Product');
 		return $repository->findAll();
 	}
-	
+
 	
 	public function updateProductAvailability($productAvailable){
 		$em = $this->db->getEntityManager();
@@ -73,7 +73,11 @@ class  DoctrineDbService implements iDataProviderService
 	public function findWinners(){}
 	
 	
-	public function insertWinner($winner){}
+	public function updateParcipantToWinner($winner){
+		$em = $this->db->getEntityManager();
+		$em->merge($winner);
+		$em->flush();
+	}
 	
 	
 	public function insertUserParticipation($userParticipation){
@@ -84,12 +88,18 @@ class  DoctrineDbService implements iDataProviderService
 	}
 	
 	
-	public function findParticipationByUserId($user_id, $date ){
+	public function findParticipationBy($user_id , $code_id, $date){
+		
+		$dateFormatted = $date->format('Y-m-d');
 		$em = $this->db->getEntityManager();
 		$repository = $em->getRepository('Odiseo\ViolettaPromo\Model\UserParticipation');
-		$date == null ? new \DateTime() : $date;
-		return $repository->findBy(array('user' => $user_id , 'createdAt' => $date))[0];
 		
+		
+		$qb = $repository->createQueryBuilder('up');
+		$qb->select('up')->where('up.user = :user_id')
+		->andWhere('up.code = :code_id')->andWhere('up.createdAt >= :today')//'2014-09-30'
+		->setParameters(array('user_id' => $user_id, 'code_id' => $code_id ,'today' => $dateFormatted ));
+		return $qb->getQuery()->getResult()[0];
 	}
 	
 	
