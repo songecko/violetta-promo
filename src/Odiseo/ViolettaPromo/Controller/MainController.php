@@ -25,9 +25,7 @@ class MainController extends Controller
 {		
 	public function indexAction(Request $request)
 	{
-
 		return $this->render('Main/index.php');
-	
 	}
 	
 	public function participateAction(Request $request)
@@ -39,48 +37,60 @@ class MainController extends Controller
 		$validCode = $iUtilHelper->validateCode($code);
 		if ($validCode != null)
 		{
-			
 			$registeredUser = $iUtilHelper->registerParticipant($dni, $validCode);
-			d($registeredUser); die;
 			$userParticipation = $iUtilHelper->participate($registeredUser, $validCode);
-			if ($userParticipation != null)//it is able to participate
+			if ($userParticipation != null) //it is able to participate
 			{
 				$winProduct = $iUtilHelper->executeConcourse($registeredUser);
 				if ($winProduct != null)
 				{
-					// TODO: gano -> mostrar pantalla ganador
+					return $this->render('Main/ganador.php', array(
+							'code' => $code,
+							'dni' => $dni,
+					));
 				}
 				else
 				{
-					// TODO: no gano -> mostrar pantalla "gracias por participar"
+					return $this->render('Main/perdedor.php');
 				}
 			}//it is not able to participate
 			else{
-				// TODO: mostrar mensaje de error diciendo que noe está habilitado para participar
+				return $this->render('Main/errorParticipating.php', array(
+					'message' => "No puedes participar en estos momentos, inténtalo de nuevo mas tarde.",
+				));
 			}
 		}
-		else{ //TODO: mostrare mensaje de error "codigo invalido".
-		
+		else{ //mostrare mensaje de error "codigo invalido".
+			return $this->render('Main/errorParticipating.php', array(
+					'message' => "El código ingresado es inválido",
+			));
 		}
-				
-		return $this->render('Main/ganador.php', array(
-			'code' => $code,
-        	'dni' => $dni,
-        )); 
 	}
 
 	public function updateWinnerAction(Request $request)
 	{
-			$dni = $request->request->get('dni');
-			$code = $request->request->get('code');
-			$fullname = $request->request->get('fullname');
-			$phone = $request->request->get('phone');
-			$email = $request->request->get('email');
+		$dni = $request->request->get('dni');
+		//$code = $request->request->get('code');
+		$fullname = $request->request->get('fullname');
+		$phone = $request->request->get('phone');
+		$email = $request->request->get('email');
+		
+		$dataProvider = $this->get('data_provider');
+		$user = $dataProvider->findParticipantByDni($dni);
 		
 		// TODO: VALIDAR dni igual al DNI con el que participó
-		return $this->render('Main/winnerUpdated.php');
 		//sino
-			//TODO: mostrar pantalla de "dni no coincide"
+		//TODO: mostrar pantalla de "dni no coincide"
+		if($user)
+		{
+			$user->setFullname($fullname);
+			$user->setPhone($phone);
+			$user->setEmail($email);
+			
+			$this->get('database')->getEntityManager()->flush();
+		}
+		
+		return $this->render('Main/winnerUpdated.php');
 	}
 	
 	protected function getViewsDir()
