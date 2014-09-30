@@ -3,6 +3,7 @@
 namespace Odiseo\ViolettaPromo\Helpers;
 use Odiseo\ViolettaPromo\Helpers\iUtilHelper;
 use Odiseo\ViolettaPromo\Model\User;
+use Odiseo\ViolettaPromo\Model\UserParticipation;
 
 
 class DefaultUtilHelper implements iUtilHelper
@@ -20,27 +21,50 @@ class DefaultUtilHelper implements iUtilHelper
 	    $this->validCodes = $configuration->getProperty('validCodes');
 	    
 	  }
+ 	
  	public function validateCode($code){
 		foreach ($this->validCodes as $validCode) {
  			if ($validCode->getCode() ==  $code)
- 				return true;
+ 				return $validCode;
  		}
- 		return false;
+ 		return null;
 	}
+	
 	public function validateData($data){
 		
 	}
+	
+	public function registerParticipant($dni, $validCode){
+		
+		$registeredUser = $this->dataProviderService->findParticipantByDni($dni);
+		if ($registeredUser == null){
+			$user = new User();
+			$user->setDni($dni);
+			$registeredUser =  $this->dataProviderService->insertParticipant($user);
+		}
+		return $registeredUser;
+	}
+	
+	public function participate($registeredUser, $validCode){
+		$userParticipation = $this->dataProviderService->findParticipationByUserId($registeredUser->getId());
+		
+		if ($userParticipation != null)//ya participo este día
+			return null;
+		else{//registro nueva participación
+			$userParticipation  = new UserParticipation();
+			$userParticipation->setUser($registeredUser);
+			$userParticipation->setCode($validCode);
+			$this->dataProviderService->insertUserParticipation($userParticipation);
+			return $userParticipation;
+		}
+	}
+	
 	
 	/**
 	 * (non-PHPdoc)
 	 * @see \Odiseo\ViolettaPromo\Helpers\iUtilHelper::executeConcourse()
 	 */
 	public function executeConcourse($user){
-		
-		$registeredUser = $this->dataProviderService->findParticipantByDni($user->getDni());
-		if ($registeredUser == null){
-			$registeredUser =  $this->dataProviderService->insertParticipant($user);
-		}
 		
 		$participantsQuantity = $this->dataProviderService->countParticipants();
 		

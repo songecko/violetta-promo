@@ -73,12 +73,24 @@ class  DoctrineDbService implements iDataProviderService
 	public function findWinners(){}
 	
 	
-	public function insertWinner($winner){
-		
-		
+	public function insertWinner($winner){}
+	
+	
+	public function insertUserParticipation($userParticipation){
+		$em = $this->db->getEntityManager();
+		$em->persist($userParticipation);
+		$em->flush();
+		return $userParticipation;
 	}
 	
 	
+	public function findParticipationByUserId($user_id, $date ){
+		$em = $this->db->getEntityManager();
+		$repository = $em->getRepository('Odiseo\ViolettaPromo\Model\UserParticipation');
+		$date == null ? new \DateTime() : $date;
+		return $repository->findBy(array('user' => $user_id , 'createdAt' => $date))[0];
+		
+	}
 	
 	
 	

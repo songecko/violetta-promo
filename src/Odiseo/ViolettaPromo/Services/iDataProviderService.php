@@ -51,5 +51,13 @@ interface iDataProviderService
 	 */
 	public function findAllProducts();
 	
+	/**
+	 * registra un nuevo participante
+	 */	
+	public function insertUserParticipation();
+	
+	
+	public function findParticipationUserId($user_id);
+	
 		
 }

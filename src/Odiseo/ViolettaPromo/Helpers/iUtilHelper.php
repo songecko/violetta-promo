@@ -26,5 +26,18 @@ interface iUtilHelper
 	 */
 	public function validateData($data);
 	
+	/**
+	 *  Registra un nuevo participante
+	 * @param unknown $dni 
+	 * @param unknown $validcode class Code
+	 */
+	public function registerParticipant($dni, $validCode);
 	
+	/**
+	 * 
+	 * @param UserParticipation $userParticipation
+	 * @return null if user is not able to partcipate today.
+	 * @return UserParticipation if user is able to participate.
+	 */
+	public function insertUserParticipation($userParticipation);
 }

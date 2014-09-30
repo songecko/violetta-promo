@@ -30,10 +30,10 @@
                         <img src="<?php echo $view['assets']->getUrl('images/codigo.png') ?>" class="codigoBarra">
                         <div class="contenedorForm">
                             <form name="formulario1" id="formulario1" method="post" action="<?php echo $view['router']->generate('violetta_participate') ?>">
-                                <input type="text" name="code" id="codigo" class="campo" placeholder="Ingresá tu código" 
+                                <input type="text" name="code" id="codigo" value='7798142351212' class="campo" placeholder="Ingresá tu código" 
                                 	 onKeypress="if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;"
                                 	data-rule-required="true">
-                                <input type="text" class="campo" name="dni" id="dni" placeholder="Ingresá tu número de DNI"
+                                <input type="text" class="campo" value="31096234" name="dni" id="dni" placeholder="Ingresá tu número de DNI"
                                 	 onKeypress="if (event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;"
                                 	data-rule-required="true">
                                 <div class="clear14"></div>

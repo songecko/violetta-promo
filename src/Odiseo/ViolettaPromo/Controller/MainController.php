@@ -34,22 +34,38 @@ class MainController extends Controller
 	{
 		$dni = $request->request->get('dni');
 		$code = $request->request->get('code');
-	
 		$iUtilHelper = $this->get(iUtilHelper::SERVICE_NAME);
-		if ($iUtilHelper->validateCode($code))
-		{
-			//utilHelper->registerParcipant();
-				//insertar new user.
-				//VALIDAR SI EL PARTICIPANTE YA PARITICIPO ESTE DÍA.
-			
-			$user = new User();
-			$user->setDni($dni);
-			$iUtilHelper->executeConcourse($user);
 		
+		$validCode = $iUtilHelper->validateCode($code);
+		if ($validCode != null)
+		{
+
+			$registeredUser = $iUtilHelper->registerParticipant($dni, $validCode);
+			
+			$userParticipation = $iUtilHelper->participate($registeredUser, $validCode);
+
+			if ($userParticipation != null)//it is able to participate
+			{
+				$winProduct = $iUtilHelper->executeConcourse($registeredUser);
+				
+				if ($winProduct != null)
+				{
+					// TODO: gano -> mostrar pantalla ganador
+				}
+				else
+				{
+					// TODO: no gano -> mostrar pantalla "gracias por participar"
+				}
+				
+			}//it is not able to participate
+			else{
+				// TODO: mostrar mensaje de error diciendo que noe está habilitado para participar
+			}
+			
 		
 		}
-		else{
-		 //mostrare mensaje de error "codigo invalido".
+		else{ //TODO: mostrare mensaje de error "codigo invalido".
+		
 		}
 				
 		return $this->render('Main/ganador.php', array(
@@ -66,10 +82,10 @@ class MainController extends Controller
 			$phone = $request->request->get('phone');
 			$email = $request->request->get('email');
 		
-		// dni igual al DNI con el que participó
+		// TODO: VALIDAR dni igual al DNI con el que participó
 		return $this->render('Main/winnerUpdated.php');
 		//sino
-			//mostrar pantalla de "dni no coincide"
+			//TODO: mostrar pantalla de "dni no coincide"
 	}
 	
 	protected function getViewsDir()
