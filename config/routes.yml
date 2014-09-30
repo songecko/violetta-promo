@@ -1,3 +1,11 @@
 homepage:
     path:     /
     defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::indexAction' }
+    
+violetta_participate:
+    path:     /participate
+    defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::participateAction' }
+    
+violetta_update_winner:
+    path:     /update-winner
+    defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::updateWinnerAction' }
