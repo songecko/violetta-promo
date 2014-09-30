@@ -14,7 +14,7 @@ interface iUtilHelper
 	/**
 	 * @return	boolean saying if the participan won or not. 
 	 */
-	public function executeConcourse($participant);
+	public function executeConcourse($user, $userParticipation);
 	
 	/**
 	 * @return boolean saying if the code is valid.

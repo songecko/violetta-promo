@@ -1,5 +1,6 @@
 Odiseo\ViolettaPromo\Model\Code:
     type: entity
+    table: code
     id:
         id:
             type: integer

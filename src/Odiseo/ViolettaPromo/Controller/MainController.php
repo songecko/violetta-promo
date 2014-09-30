@@ -41,30 +41,33 @@ class MainController extends Controller
 			$userParticipation = $iUtilHelper->participate($registeredUser, $validCode);
 			if ($userParticipation != null) //it is able to participate
 			{
-				$winProduct = $iUtilHelper->executeConcourse($registeredUser);
+				$winProduct = $iUtilHelper->executeConcourse($registeredUser,$userParticipation );
 				if ($winProduct != null)
 				{
-					return $this->render('Main/ganador.php', array(
+					$view = $this->templating->render('Main/ganador.php', array(
 							'code' => $code,
 							'dni' => $dni,
 					));
 				}
 				else
 				{
-					return $this->render('Main/perdedor.php');
+					$view = $this->templating->render('Main/perdedor.php');
 				}
 			}//it is not able to participate
 			else{
-				return $this->render('Main/errorParticipating.php', array(
+				$view = $this->templating->render('Main/errorParticipating.php', array(
 					'message' => "No puedes participar en estos momentos, inténtalo de nuevo mas tarde.",
 				));
 			}
 		}
 		else{ //mostrare mensaje de error "codigo invalido".
-			return $this->render('Main/errorParticipating.php', array(
+			$view = $this->templating->render('Main/errorParticipating.php', array(
 					'message' => "El código ingresado es inválido",
 			));
 		}
+		
+		//Return the view, without layout (popup)
+		return new Response($view);
 	}
 
 	public function updateWinnerAction(Request $request)
@@ -90,7 +93,9 @@ class MainController extends Controller
 			$this->get('database')->getEntityManager()->flush();
 		}
 		
-		return $this->render('Main/winnerUpdated.php');
+		$view = $this->templating->render('Main/winnerUpdated.php');
+		//Return the view, without layout (popup)
+		return new Response($view);
 	}
 	
 	protected function getViewsDir()
@@ -98,4 +103,3 @@ class MainController extends Controller
 		return __DIR__.'/../Resources/views/%name%';
 	}
 }
-
