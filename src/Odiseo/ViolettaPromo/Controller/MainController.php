@@ -39,15 +39,13 @@ class MainController extends Controller
 		$validCode = $iUtilHelper->validateCode($code);
 		if ($validCode != null)
 		{
-
-			$registeredUser = $iUtilHelper->registerParticipant($dni, $validCode);
 			
+			$registeredUser = $iUtilHelper->registerParticipant($dni, $validCode);
+			d($registeredUser); die;
 			$userParticipation = $iUtilHelper->participate($registeredUser, $validCode);
-
 			if ($userParticipation != null)//it is able to participate
 			{
 				$winProduct = $iUtilHelper->executeConcourse($registeredUser);
-				
 				if ($winProduct != null)
 				{
 					// TODO: gano -> mostrar pantalla ganador
@@ -56,13 +54,10 @@ class MainController extends Controller
 				{
 					// TODO: no gano -> mostrar pantalla "gracias por participar"
 				}
-				
 			}//it is not able to participate
 			else{
 				// TODO: mostrar mensaje de error diciendo que noe está habilitado para participar
 			}
-			
-		
 		}
 		else{ //TODO: mostrare mensaje de error "codigo invalido".
 		

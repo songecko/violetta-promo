@@ -54,10 +54,10 @@ interface iDataProviderService
 	/**
 	 * registra un nuevo participante
 	 */	
-	public function insertUserParticipation();
+	public function insertUserParticipation($userParticipation);
 	
 	
-	public function findParticipationUserId($user_id);
+	public function findParticipationByUserId($user_id, $date );
 	
 		
 }

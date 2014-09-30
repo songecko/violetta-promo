@@ -39,5 +39,5 @@ interface iUtilHelper
 	 * @return null if user is not able to partcipate today.
 	 * @return UserParticipation if user is able to participate.
 	 */
-	public function insertUserParticipation($userParticipation);
+		public function participate($registeredUser, $validCode);
 }
