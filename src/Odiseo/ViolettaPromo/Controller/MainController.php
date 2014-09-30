@@ -23,8 +23,7 @@ use Odiseo\ViolettaPromo\Model\User;
 class MainController extends Controller
 {		
 	public function indexAction(Request $request)
-	{		
-
+	{
 		/////////////TEST/////////////
 		$provider  = $this->get('data_provider');
 		$isValid = $provider->findProductAvailabilityByProductId(1);

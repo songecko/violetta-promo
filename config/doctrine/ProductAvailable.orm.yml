@@ -14,7 +14,7 @@ Odiseo\ViolettaPromo\Model\ProductAvailable:
         createdAt:
             type: datetime
             column: created_at
-    manyToOne:
+    oneToOne:
         product:
             targetEntity: Product
             joinColumn:

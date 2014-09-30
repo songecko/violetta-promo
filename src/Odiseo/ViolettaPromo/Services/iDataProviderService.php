@@ -3,6 +3,7 @@
 
 namespace Odiseo\ViolettaPromo\Services;
 
+use Odiseo\ViolettaPromo\Model\ProductAvailable;
 /**
  *  This interface define the standard behaviour for each data provider.
  * @author Petium
@@ -19,17 +20,36 @@ interface iDataProviderService
 	*/
 	public function findAllParticpants();
 	
-	public function insertParticipantById($participant);
+	public function insertParticipant($user);
 	
-	public function findParticipant($id);
+	public function findParticipantByDni($dni);
 	 
-	public function findAvailablesProductForToday();
+	/**
+	 * @param $plusDayExpresion -> plus expression i.e : '-1 day' or '+3 day'
+	 * @return  array of records with date =  (today + $plusDayExpresion )
+	 */
+	public function findAvailablesProductForTodayMinusDays( $plusDayExpresion );
 	
-	public function updateProductAvailability($product);
+	public function updateProductAvailability($productAvailable);
 	
 	public function findWinners();
 	
 	public function insertWinner($winner);
+	
+	public function countParticipants();
+	
+	/**
+	 * @param integer $idProduct
+	 * @return last record on db for ProductAvailable
+	 */
+	
+	public function findProductAvailabilityByProductId($idProduct);
+	
+	/**
+	 * 
+	 * @return array[producst]
+	 */
+	public function findAllProducts();
 	
 		
 }
