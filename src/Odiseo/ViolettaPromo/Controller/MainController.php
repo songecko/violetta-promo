@@ -38,8 +38,9 @@ class MainController extends Controller
 		$iUtilHelper = $this->get(iUtilHelper::SERVICE_NAME);
 		if ($iUtilHelper->validateCode($code))
 		{
-			
-			//FIXME: VALIDAR SI EL PARTICIPANTE YA PARITICIPO ESTE DÍA.
+			//utilHelper->registerParcipant();
+				//insertar new user.
+				//VALIDAR SI EL PARTICIPANTE YA PARITICIPO ESTE DÍA.
 			
 			$user = new User();
 			$user->setDni($dni);
@@ -59,13 +60,16 @@ class MainController extends Controller
 
 	public function updateWinnerAction(Request $request)
 	{
-		$dni = $request->request->get('dni');
-		$code = $request->request->get('code');
-		$fullname = $request->request->get('fullname');
-		$phone = $request->request->get('phone');
-		$email = $request->request->get('email');
-	
+			$dni = $request->request->get('dni');
+			$code = $request->request->get('code');
+			$fullname = $request->request->get('fullname');
+			$phone = $request->request->get('phone');
+			$email = $request->request->get('email');
+		
+		// dni igual al DNI con el que participó
 		return $this->render('Main/winnerUpdated.php');
+		//sino
+			//mostrar pantalla de "dni no coincide"
 	}
 	
 	protected function getViewsDir()
