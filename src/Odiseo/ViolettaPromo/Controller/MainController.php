@@ -24,10 +24,17 @@ class MainController extends Controller
 {		
 	public function indexAction(Request $request)
 	{		
-		$helper  = $this->get('util_helper');
-		$isValid = $helper->validateCode('3232323');
-		d($isValid);
+		/////////////TEST/////////////
+		$provider  = $this->get('data_provider');
+		$isValid = $provider->findProductAvailabilityByProductId(1);
+		
+		$now = new \DateTime();
+		d($isValid->getDate());
+		d($now);
+		$diff = $now->diff( $isValid->getDate());
+		d($diff->days);
 		return $this->render('Main/index.php');
+		/////////////FIN TEST /////////////
 	}
 	
 	protected function getViewsDir()

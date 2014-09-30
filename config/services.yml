@@ -33,10 +33,10 @@ services:
         calls: 
             - [ init, [ '@service_container' ]]
     data_provider:
-        class: Odiseo\ViolettaPromo\Services\DoctrineDbService
+        class: Odiseo\ViolettaPromo\ServicesImpl\DoctrineDbService
         arguments:  [ '@database' ]
     util_helper:
-        class: Odiseo\ViolettaPromo\Helpers\UtilHelper
+        class: Odiseo\ViolettaPromo\Helpers\DefaultUtilHelper
         arguments:  [ '@data_provider', '@configuration' ]     
     mobile_detect:
         class:     Mobile_Detect
