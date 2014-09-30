@@ -18,30 +18,39 @@ use Pagerfanta\View\DefaultView;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Doctrine\DBAL\DBALException;
 use Odiseo\ViolettaPromo\Model\User;
+use Odiseo\ViolettaPromo\Helpers\iUtilHelper;
 
 
 class MainController extends Controller
 {		
 	public function indexAction(Request $request)
 	{
-		/////////////TEST/////////////
-		$provider  = $this->get('data_provider');
-		$isValid = $provider->findProductAvailabilityByProductId(1);
-		
-		$now = new \DateTime();
-		d($isValid->getDate());
-		d($now);
-		$diff = $now->diff( $isValid->getDate());
-		d($diff->days);
+
 		return $this->render('Main/index.php');
-		/////////////FIN TEST /////////////
+	
 	}
 	
 	public function participateAction(Request $request)
 	{
 		$dni = $request->request->get('dni');
 		$code = $request->request->get('code');
+	
+		$iUtilHelper = $this->get(iUtilHelper::SERVICE_NAME);
+		if ($iUtilHelper->validateCode($code))
+		{
+			
+			//FIXME: VALIDAR SI EL PARTICIPANTE YA PARITICIPO ESTE DÍA.
+			
+			$user = new User();
+			$user->setDni($dni);
+			$iUtilHelper->executeConcourse($user);
 		
+		
+		}
+		else{
+		 //mostrare mensaje de error "codigo invalido".
+		}
+				
 		return $this->render('Main/ganador.php', array(
 			'code' => $code,
         	'dni' => $dni,
@@ -64,3 +73,4 @@ class MainController extends Controller
 		return __DIR__.'/../Resources/views/%name%';
 	}
 }
+

@@ -3,6 +3,10 @@
 namespace Odiseo\ViolettaPromo\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+
+
+
+
 class User extends Model 
 {	
 	protected $id;
@@ -16,7 +20,7 @@ class User extends Model
 	{
 		parent::__construct();
 		
-		$this->participations = ArrayCollection();
+		//$this->participations = new ArrayCollection();
 	}
 	
 	public function setId($id)

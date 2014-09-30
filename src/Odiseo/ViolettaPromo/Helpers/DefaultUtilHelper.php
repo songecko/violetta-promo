@@ -2,13 +2,14 @@
 
 namespace Odiseo\ViolettaPromo\Helpers;
 use Odiseo\ViolettaPromo\Helpers\iUtilHelper;
+use Odiseo\ViolettaPromo\Model\User;
 
 
 class DefaultUtilHelper implements iUtilHelper
 {
 	
 	const VALUE_WINNER = 0;
-	const PRODUCTS_BY_DAY = 3;
+	const PRODUCTS_PER_DAY = 3;
 	private  $dataProviderService;
 	private  $validCodes = array();
 	
@@ -38,43 +39,49 @@ class DefaultUtilHelper implements iUtilHelper
 		
 		$registeredUser = $this->dataProviderService->findParticipantByDni($user->getDni());
 		if ($registeredUser == null){
-			$user =  $this->dataProviderService->insertParticipant($user);
+			$registeredUser =  $this->dataProviderService->insertParticipant($user);
 		}
+		
 		$participantsQuantity = $this->dataProviderService->countParticipants();
-		$hash_productId_prdAvailability = $this->getAvailableProducts();
-		foreach ($hash_productId_prdAvailability as $key => $value) {
-			$lastProductAvailability = $hash_productId_prdAvailability[$key];
-			$productQuantity = $lastProductAvailability->getQuantity();
+		
+		$productsAvailability = $this->getProductsAvailability();
+	
+		foreach ($productsAvailability as $prdAvailability) {
+			$productQuantity = $prdAvailability->getQuantity();
 			if ($productQuantity > 0){
 				$isWinner = $this->doRandom($participantsQuantity, $productQuantity);
 				if ($isWinner){
-					$lastProductAvailability->setQuantity( $productQuantity - 1);
-					$this->dataProviderService->updateProductAvailability($lastProductAvailability);
-					return $lastProductAvailability->getProduct();
+					$prdAvailability->setQuantity( $productQuantity - 1);
+					
+					$this->dataProviderService->updateProductAvailability($prdAvailability);
+					return $prdAvailability->getProduct();
 				}
 			}
 		}
 		return null;
 	}
 	
-	private function getAvailableProducts(){
+	private function getProductsAvailability(){
 		$allProducst = $this->dataProviderService->findAllProducts();
-		$hash_product_availability = array();
-	
+		$productsAvailability = array();
 		foreach ($allProducst as $product) {
 			//por configuración siempre hay un registro
 			$lastAvailability = $this->dataProviderService->findProductAvailabilityByProductId($product->getId());
-			
 			$now = new \DateTime();
 			$diff = $now->diff($lastAvailability->getDate());
 			
+			//updateQuantity
 			// si tiene fecha de hoy. Es la cantidad que necesito diff= 0 ==> no suma nada 
-			$newAvailability = $diff * $this->PRODUCTS_BY_DAY;
-			$lastAvailability->setQuantity($newAvailability);
-			
-			$hash_product_availability( $product->getId() ) = $lastAvailability;
+			$newAvailability = $lastAvailability->getQuantity() +  $diff->days * self::PRODUCTS_PER_DAY;
+			d($newAvailability);
+		    $lastAvailability->setQuantity($newAvailability);
+		    //updateDate to today.
+			$now = new \DateTime();
+			$lastAvailability->setDate($now);
+			$this->dataProviderService->updateProductAvailability($lastAvailability);
+			$productsAvailability[] = $lastAvailability;
 		}
-		return $hash_product_availability;
+		return $productsAvailability;
 	}
 
 	
@@ -90,7 +97,7 @@ class DefaultUtilHelper implements iUtilHelper
 		if ($participantsQuantity == 0) return true;
 		$randomRange = $participantsQuantity / $productQuantity;
 		$valueRaffled = rand(0 ,$randomRange );
-		if ( $this->VALUE_WINNER == $valueRaffled){
+		if (  self::VALUE_WINNER == $valueRaffled){
 			return true;
 		}
 		return false;

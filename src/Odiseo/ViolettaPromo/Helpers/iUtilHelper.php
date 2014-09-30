@@ -10,6 +10,7 @@ namespace Odiseo\ViolettaPromo\Helpers;
 interface iUtilHelper
 {
 	
+	const SERVICE_NAME = 'util_helper';
 	/**
 	 * @return	boolean saying if the participan won or not. 
 	 */
