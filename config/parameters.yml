@@ -8,3 +8,4 @@ parameters:
     facebook_app_host: ''
     facebook_tab_url: ''
     facebook_login_scope: 'public_profile, email, publish_actions'
+    violetta.contact.mail: 'odiseo.team@gmail.com'

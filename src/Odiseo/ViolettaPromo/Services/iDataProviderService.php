@@ -34,6 +34,8 @@ interface iDataProviderService
 	
 	public function findWinners();
 	
+	public function findProductById($id);
+	
 	public function updateParcipantToWinner($winner);
 	
 	public function countParticipants();

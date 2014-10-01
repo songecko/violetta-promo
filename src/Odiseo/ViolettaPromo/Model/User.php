@@ -20,7 +20,7 @@ class User extends Model
 	{
 		parent::__construct();
 		
-		//$this->participations = new ArrayCollection();
+		$this->participations = new ArrayCollection();
 	}
 	
 	public function setId($id)
@@ -71,5 +71,10 @@ class User extends Model
 	public function getPhone()
 	{
 		return $this->phone;
+	}
+	
+	public function getParticipations()
+	{
+		return $this->participations;
 	}
 }

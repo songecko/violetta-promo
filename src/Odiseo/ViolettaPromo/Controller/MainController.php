@@ -44,6 +44,10 @@ class MainController extends Controller
 				$winProduct = $iUtilHelper->executeConcourse($registeredUser,$userParticipation );
 				if ($winProduct != null)
 				{
+					//Guardo en la session el dni ingresado y el producto ganado
+					$_SESSION['last_winner_dni'] = $dni;
+					$_SESSION['last_win_product_id'] = $winProduct->getId();
+					
 					$view = $this->templating->render('Main/ganador.php', array(
 							'code' => $code,
 							'dni' => $dni,
@@ -72,28 +76,40 @@ class MainController extends Controller
 
 	public function updateWinnerAction(Request $request)
 	{
-		$dni = $request->request->get('dni');
-		//$code = $request->request->get('code');
-		$fullname = $request->request->get('fullname');
-		$phone = $request->request->get('phone');
-		$email = $request->request->get('email');
+		$winner = $request->request->get('winner');
+		
+		$lastWinnerDni = isset($_SESSION['last_winner_dni'])?$_SESSION['last_winner_dni']:'-1';
 		
 		$dataProvider = $this->get('data_provider');
-		$user = $dataProvider->findParticipantByDni($dni);
+		$user = $dataProvider->findParticipantByDni($winner['dni']);
+		$winProduct = $dataProvider->findProductById($_SESSION['last_win_product_id']);
 		
-		// TODO: VALIDAR dni igual al DNI con el que participó
-		//sino
-		//TODO: mostrar pantalla de "dni no coincide"
-		if($user)
+		if($user && ($user->getDni() == $lastWinnerDni))
 		{
-			$user->setFullname($fullname);
-			$user->setPhone($phone);
-			$user->setEmail($email);
-			
+			//Update winner
+			$user->setFullname($winner['fullname']);
+			$user->setPhone($winner['phone']);
+			$user->setEmail($winner['email']);
 			$this->get('database')->getEntityManager()->flush();
+			
+			//Send email
+			$emailTo = $this->container->getParameter('violetta.contact.mail');
+			$body = $this->templating->render('Main/Mailer/Email.php', array(
+				'winner' => $winner,
+				'product' => $winProduct
+			));
+			$this->get('violetta.send.mailer')->sendWinnerMail($winner, $emailTo, $body);
+			
+			//Get the view
+			$view = $this->templating->render('Main/winnerUpdated.php');
+		}
+		else 
+		{
+			$view = $this->templating->render('Main/errorParticipating.php', array(
+				'message' => "Se produjo un error al guardar los datos. Inténtalo nuevamente.",
+			));
 		}
 		
-		$view = $this->templating->render('Main/winnerUpdated.php');
 		//Return the view, without layout (popup)
 		return new Response($view);
 	}
