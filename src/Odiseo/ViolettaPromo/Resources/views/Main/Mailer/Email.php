@@ -4,4 +4,4 @@
 <p><strong>Email: </strong><?php echo $winner['email'] ?></p>
 <p><strong>Teléfono: </strong><?php echo $winner['phone'] ?></p>
 <p><strong>Código utilizado: </strong><?php echo $winner['code'] ?></p>
-<p><strong>Producto ganado: </strong><?php echo $product['name'] ?></p>
+<p><strong>Producto ganado: </strong><?php echo $product->getName() ?></p>

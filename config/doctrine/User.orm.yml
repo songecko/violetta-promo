@@ -9,7 +9,7 @@ Odiseo\ViolettaPromo\Model\User:
     fields:
         dni:
             type: string
-            length: 8
+            length: 20
             unique: true
         fullname:
             type: string

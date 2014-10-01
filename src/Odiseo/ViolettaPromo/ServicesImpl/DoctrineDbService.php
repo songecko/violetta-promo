@@ -83,7 +83,7 @@ class DoctrineDbService implements iDataProviderService
 	{
 		$em = $this->db->getEntityManager();
 		$repository = $em->getRepository('Odiseo\ViolettaPromo\Model\Product');
-		return $repository->findById($id);
+		return $repository->findOneById($id);
 	}
 	
 	public function updateParcipantToWinner($winner)
