@@ -38,7 +38,7 @@
                                 	data-rule-required="true">
                                 <div class="clear14"></div>
                                 <input type="checkbox" name="terminos1" id="terminos1" class="elCheck" data-rule-required="true">
-                                <p class="terminos">Estoy de acuerdo con los <a href="<?php echo $view['assets']->getUrl('bases-y-condiciones-gum-violetta.doc') ?>" target="_blank">Términos & Condiciones</a></p>
+                                <p class="terminos">Estoy de acuerdo con los <a href="<?php echo $view['router']->generate('bases_condiciones') ?>" target="_blank">Términos & Condiciones</a></p>
                                 <input type="submit" value="ENVIAR MI CÓDIGO" class="mandale">
                                 <p class="terminos2">Debe aceptar los terminos y condiciones</p>
                             </form>
@@ -65,9 +65,7 @@
 		<div class="contSeccion02">
         	<div class="cont2a">
                 <img src="<?php echo $view['assets']->getUrl('images/logo3.png') ?>" class="logo3">
-                <p class="frase3">¿Todavía no lo tenés? Conseguilo en <a href="http://www.e-farmacity.com/catalogsearch/result/?q=gum" target="_blank">Farmacity</a>
-                 , <a href="https://www3.discovirtual.com.ar/Comprar/Home.aspx" target="_blank">Disco Virtual</a> 
-                 , <a href="https://www.walmartonline.com.ar/Busqueda.aspx?Text=gum&Departamento=Categoria..." target="_blank">Wallmart Online</a></p>
+                <p class="frase3">¿Todavía no lo tenés? Conseguilo en <a href="http://www.e-farmacity.com/catalogsearch/result/?q=gum" target="_blank">Farmacity</a> , <a href="https://www3.discovirtual.com.ar/Comprar/Home.aspx" target="_blank">Disco Virtual</a> , <a href="https://www.walmartonline.com.ar/Busqueda.aspx?Text=gum&Departamento=Categoria..." target="_blank">Wallmart Online</a></p>
             </div>
             <div class="contSlider">
             	<div class="contFlechas">
@@ -161,11 +159,19 @@
             <div class="footer">
             	<img src="<?php echo $view['assets']->getUrl('images/logo2.png') ?>" class="logo2">
                 <p class="recomendado">Recomendado por odontólogos</p>
-                <p class="menu2">
-                	<span>&copy; 2014 Sunstar GUM</span>         
-                	<a href=<?php echo $view['assets']->getUrl('bases-y-condiciones-gum-violetta.doc') ?> target="_blank">Bases & Condiciones</a> 
-                    <a href="http://latam.gumbrand.com/privacy-policy.aspx" target="_blank">Política de Privacidad</a>
-                </p>
+                <div class="footDer">
+                    <p class="menu2">Ⓒ 2014 Sunstar GUM         <a href="<?php echo $view['router']->generate('bases_condiciones') ?>" target="_blank">Bases & Condiciones</a>          <a href="http://latam.gumbrand.com/privacy-policy.aspx" target="_blank">Polìtica de Privacidad</a></p>
+                    <div class="clear14"></div>
+                    <div class="contAtencion">
+                        <img src="<?php echo $view['assets']->getUrl('images/phone.png') ?>" class="icono">
+                        <p class="mens3">(011) 4816-7144.</p>
+                    </div>
+                    <div class="contAtencion">
+                        <img src="<?php echo $view['assets']->getUrl('images/mail.png') ?>" class="icono">
+                        <p class="mens3"><a href="mailto: info@ar.sunstar.com">info@ar.sunstar.com</a></p>
+                    </div>
+                </div>
+                
             </div>
         </div>
 	</div>

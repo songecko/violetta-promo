@@ -59,9 +59,7 @@ class MainController extends Controller
 				}
 			}//it is not able to participate
 			else{
-				$view = $this->templating->render('Main/errorParticipating.php', array(
-					'message' => "No puedes participar en estos momentos, inténtalo de nuevo mas tarde.",
-				));
+				$view = $this->templating->render('Main/repetido.php');
 			}
 		}
 		else{ //mostrare mensaje de error "codigo invalido".
@@ -112,6 +110,11 @@ class MainController extends Controller
 		
 		//Return the view, without layout (popup)
 		return new Response($view);
+	}
+	
+	public function basesAction(Request $request)
+	{
+		return new Response($this->templating->render('Main/bases.php'));
 	}
 	
 	protected function getViewsDir()

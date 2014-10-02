@@ -9,3 +9,7 @@ violetta_participate:
 violetta_update_winner:
     path:     /update-winner
     defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::updateWinnerAction' }
+    
+bases_condiciones:
+    path:     /bases_condiciones
+    defaults: { _controller: 'Odiseo\ViolettaPromo\Controller\MainController::basesAction' }

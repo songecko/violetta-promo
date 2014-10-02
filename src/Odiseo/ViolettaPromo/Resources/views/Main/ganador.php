@@ -21,7 +21,17 @@
     </form>
     
     <p class="mens2">Recordá <span>conservar el envase del producto</span> con el código ganador, y el <span>sticker <br>con el código</span> intacto, son necesarios para poder entregarte el premio.</p>
-    
-    <img src="<?php echo $view['assets']->getUrl('images/logo2.png')?>" class="logoGano">
-    <a href="#" onclick="window.print(); return false;"><img src="<?php echo $view['assets']->getUrl('images/imprimir.jpg') ?>" class="imprimir"></a>
+    <div class="sesepara">
+        <div class="contAtencion" id="primero">
+            <img src="<?php echo $view['assets']->getUrl('images/mail.png') ?>" class="icono">
+            <p class="mens3"><a href="mailto: info@ar.sunstar.com">info@ar.sunstar.com</a></p>
+        </div>
+        <div class="contAtencion">
+            <img src="<?php echo $view['assets']->getUrl('images/phone.png') ?>" class="icono">
+            <p class="mens3">(011) 4816-7144.</p>
+        </div>
+    </div>
+    <img src="<?php echo $view['assets']->getUrl('images/logo2.png') ?>" class="logoGano">
+    <a href="#"><img src="<?php echo $view['assets']->getUrl('images/imprimir.jpg') ?>" class="imprimir"></a>
+
 </div>
