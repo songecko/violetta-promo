@@ -32,6 +32,6 @@
         </div>
     </div>
     <img src="<?php echo $view['assets']->getUrl('images/logo2.png') ?>" class="logoGano">
-    <a href="#"><img src="<?php echo $view['assets']->getUrl('images/imprimir.jpg') ?>" class="imprimir"></a>
+    <a href="#" onclick="window.print(); return false;"><img src="<?php echo $view['assets']->getUrl('images/imprimir.jpg') ?>" class="imprimir"></a>
 
 </div>
