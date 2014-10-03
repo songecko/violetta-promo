@@ -168,7 +168,7 @@ p.bases b { font-weight:bold}
 
 
 
-.contGanador {width:700px; height:620px; margin:0 auto; text-align:center; background-color:#FFF; z-index:99999}
+.contGanador {width:700px; height:620px; margin:0 auto; text-align:center; background-color:#FFF; z-index:99999 ; position: relative;}
 .contGanador p.feliz {font-family: 'din-lightregular'; color:#f82452; font-size:29px; padding-top: 30px;}
 .contGanador p.perdio { color:#2BBCDB; font-family: 'din-lightregular'; font-size:29px; padding-top: 30px;}
 .contGanador p.mens {font-family: 'din-lightregular'; color:#919191; font-size:18px; padding-top: 20px; line-height:22px}

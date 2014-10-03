@@ -53,7 +53,7 @@
                 </div>
                 <div class="der01">
                 	<p class="txt02">Podés ganar estos premios de Violetta <br>y productos exclusivos de GUM.</p>
-                    <div data-menuanchor="secondPage"><a href="#productos"><p class="masProds">Ver más productos <img src="<?php echo $view['assets']->getUrl('images/abajo.png') ?>" width="18"></p></a></div>
+                    <div data-menuanchor="secondPage"><a href="#productos"><p class="masProds">Ver los productos <img src="<?php echo $view['assets']->getUrl('images/abajo.png') ?>" width="18"></p></a></div>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
                 <li class="separadores"></li>
                 <li class="tip">
                 	<img src="<?php echo $view['assets']->getUrl('images/tip2.png') ?>" class="elTip">
-                    <p class="cons2">Acordarte de visitar al odontólogo al menos <span>2 veces al año</span></p>
+                    <p class="cons2">Acordate de visitar al Odontólogo al menos <span>2 veces al año</span></p>
                 </li>
                 <li class="separadores"></li>
                 <li class="tip">
@@ -158,9 +158,9 @@
             </ul>
             <div class="footer">
             	<img src="<?php echo $view['assets']->getUrl('images/logo2.png') ?>" class="logo2">
-                <p class="recomendado">Recomendado por odontólogos</p>
+                <p class="recomendado">Recomendado por Odontólogos</p>
                 <div class="footDer">
-                    <p class="menu2">&copy; 2014 Sunstar GUM         <a href="<?php echo $view['router']->generate('bases_condiciones') ?>" target="_blank">Bases & Condiciones</a>          <a href="http://latam.gumbrand.com/privacy-policy.aspx" target="_blank">Política de Privacidad</a></p>
+                    <p class="menu2">&copy;<a href="http://www.latam.gumbrand.com"> 2014 Sunstar GUM</a>         <a href="<?php echo $view['router']->generate('bases_condiciones') ?>" target="_blank">Bases & Condiciones</a>          <a href="http://latam.gumbrand.com/privacy-policy.aspx" target="_blank">Política de Privacidad</a></p>
                     <div class="clear14"></div>
                     <div class="contAtencion">
                         <img src="<?php echo $view['assets']->getUrl('images/phone.png') ?>" class="icono">

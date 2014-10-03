@@ -33,7 +33,11 @@ function setupWinnerPopup()
 		        	  success: function(data, textStatus, xhr) 
 		        	  {  
 		        		  $.magnificPopup.open({
-		        				modal: true,
+		        				closeBtnInside: true,
+		        				showCloseBtn: true,	
+		        				closeOnContentClick: false,
+		        				closeOnBgClick: false,
+		        				enableEscapeKey: false,        				
 		        				type: 'inline',
 		        				items: {
 		        					src: data
@@ -101,7 +105,11 @@ $(document).ready(function()
 		        	  success: function(data, textStatus, xhr) 
 		        	  { 
 	        			$.magnificPopup.open({
-	        				modal: true,
+	        				closeBtnInside: true,
+	        				showCloseBtn: true,	
+	        				closeOnContentClick: false,
+	        				closeOnBgClick: false,
+	        				enableEscapeKey: false,
 	        				type: 'inline',
 	        				items: {
 	        					src: data
