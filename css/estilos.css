@@ -54,6 +54,7 @@ input:focus { outline:none}
 p.babesTit {font-size:19px; text-align:left;  color:#333; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; padding:20px}
 p.bases { font-size:15px; text-align:left; padding:20px; line-height:20px; color:#666; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; padding-top:2px}
 p.bases b { font-weight:bold}
+p.prox {font-family: 'din-mediumregular'; color:#f82452; font-size:27px; line-height:41px; padding-top:20px; position:absolute; z-index:9999; text-align:center; width:80%; left:10%}
 
 .contSeccion01 {width:100%; top:0px; bottom:0px; left:0px; right:0px; position:absolute; background-color:##2BBCDB}
 .contSeccion01 .arriba {width:100%; height:76%; position:absolute; background-color:#2BBCDB; background-image:url(../images/fondo1.png) }
@@ -67,12 +68,12 @@ p.bases b { font-weight:bold}
 .contSeccion01 .arriba .contForm .izq .alta p.txt1 {font-family: 'din-lightregular'; color:#2BBCDB; font-size:22px; padding-bottom:7px; padding-right:12px}
 .contSeccion01 .arriba .contForm .izq .alta p.txt2 {font-family: 'din-lightregular'; color:#f82452; font-size:22px; padding-right:12px}
 .contSeccion01 .arriba .contForm .izq .baja {width:100%; height:45%; position:relative}
-.contSeccion01 .arriba .contForm .izq .baja p.reco {position:absolute; left:0px; bottom:16px; font-family: 'din-lightregular'; color:#92a7b5; font-size:14px}
+.contSeccion01 .arriba .contForm .izq .baja p.reco {position:absolute; left:0px; bottom:20px; font-family: 'din-lightregular'; color:#444; font-size:20px; font-weight:600; text-align:left; line-height:21px}
 .contSeccion01 .arriba .contForm .izq .baja img.prod {position:absolute; height:96%; bottom:0px; right:0px}
 .contSeccion01 .arriba .contForm .der {width:50%; height:100%; float:left; text-align:center}
 .contSeccion01 .arriba .contForm .der p.ingresa {font-family: 'din-boldregular'; color:#363636; font-size:14px; margin-top:45px}
 .contSeccion01 .arriba .contForm .der img.codigoBarra {width:312px; margin-top:20px; margin-bottom:40px}
-.contSeccion01 .arriba .contForm .der .contenedorForm {width:350px; margin:auto; text-align:left}
+.contSeccion01 .arriba .contForm .der .contenedorForm {width:350px; margin:auto; text-align:left; position:relative}
 .contSeccion01 .arriba .contForm .der .contenedorForm input.campo {width:100%; margin:auto; height:57px; max-width:330px; font-family: 'din-lightregular'; color:#9d9d9d; font-size:24px; padding-left:14px; margin-bottom:15px; border:1px solid #66aed9}
 .contSeccion01 .arriba .contForm .der .contenedorForm input.campoError {width:100%; margin:auto; height:57px; max-width:330px; font-family: 'din-lightregular'; color:#9d9d9d; font-size:24px; padding-left:14px; margin-bottom:15px; border:1px solid red}
 .contSeccion01 .arriba .contForm .der input.elCheck {width:20px; float:left; background-color:#FFF; border:1px solid #66aed9;}
@@ -99,10 +100,10 @@ p.bases b { font-weight:bold}
 .contSeccion02 .cont2a p.frase3 {font-family: 'din-lightregular'; color:#363636; font-size:17px; padding-top:11px}
 .contSeccion02 .cont2a p.frase3 a {font-family: 'din-mediumregular'; color:#f82452; font-size:17px; text-decoration:underline}
 .contSeccion02 .cont2a p.frase3 a:hover { text-decoration:none}
-.contSeccion02 .contSlider {position:absolute; width:100%; height:100%; top:0px; z-index:8008}
+.contSeccion02 .contSlider {position:absolute; width:100%; height:100%; top:0px;z-index:54}
 .contSeccion02 .contSlider .contFlechas {width:100%; height:86px; top:50%; margin-top:-43px; position:absolute; z-index:99999}
-.contSeccion02 .contSlider .contFlechas .ant {background-image:url(../images/flechas.jpg); width:86px; height:86px; background-position:left; float:left; opacity:0.6; cursor:pointer}
-.contSeccion02 .contSlider .contFlechas .sig {background-image:url(../images/flechas.jpg); width:86px; height:86px; background-position:right; float:right; opacity:0.6; cursor:pointer}
+.contSeccion02 .contSlider .contFlechas .ant {background-image:url(../images/flechas.jpg); width:110px; height:86px; background-position: -40% 50%; float:left; opacity:0.6; cursor:pointer}
+.contSeccion02 .contSlider .contFlechas .sig {background-image:url(../images/flechas.jpg); width:110px; height:86px; background-position: 142% 50%; float:right; opacity:0.6; cursor:pointer}
 .contSeccion02 .contSlider .contFlechas div:hover { opacity:1}
 /*.contSeccion02 .contSlider .backSlider {width:100%; height:77%; background-image:url(../img/fondo2.jpg); background-position:bottom center; background-repeat:repeat-x; position:relative}*/
 .contSeccion02 .contSlider .bajoSlider {width:100%; height:23%; position:absolute; background-color:#FFF; bottom:0px}
@@ -309,8 +310,8 @@ input.mandarGano:hover {background-color:#cd3153}
 	.contSeccion01 .arriba .contForm .izq .alta h4 { font-size:50px; line-height:52px; padding-bottom:12px; padding-top:14px}
 	.contSeccion01 .arriba .contForm .izq .alta p.txt1 { font-size:20px; padding-bottom:7px}
 	.contSeccion01 .arriba .contForm .izq .alta p.txt2 { font-size:20px;}
-	.contSeccion01 .arriba .contForm .izq .baja img.prod {right:-10px; bottom:30px}
-	.contSeccion01 .arriba .contForm .izq .baja p.reco { left:auto; right:20px}
+	.contSeccion01 .arriba .contForm .izq .baja img.prod {right:-10px; bottom:0px}
+	.contSeccion01 .arriba .contForm .izq .baja p.reco { left:70px; right:20px}
 	.contSeccion01 .arriba .contForm .der .contenedorForm {width:70%;}
 	.contSeccion01 .arriba .contForm .der .contenedorForm input.campo {width:100%; height:57px; max-width:none; font-size:24px; padding-left:0px; margin-bottom:15px; text-align:center}
 	.contSeccion01 .arriba .contForm .der .contenedorForm input.campoError {width:100%; height:57px; max-width:none; font-size:24px; padding-left:0px; margin-bottom:15px; text-align:center}
@@ -382,7 +383,7 @@ input.mandarGano:hover {background-color:#cd3153}
 	.contSeccion02 .contSlider .backSlider ul.listado li #p2 { width:680px; margin-left:-340px;}
 	.contSeccion02 .contSlider .backSlider ul.listado li #p3 { width:800px; margin-left:-400px;}
 	
-	
+	p.prox { font-size:24px; line-height:34px; padding-top:10px; position:absolute; width:100%; left:0%}
 	
 	
 
@@ -431,8 +432,8 @@ input.mandarGano:hover {background-color:#cd3153}
 	.contSeccion01 .arriba .contForm .izq .alta h4 { font-size:40px; line-height:44px; padding-bottom:6px; padding-top:14px}
 	.contSeccion01 .arriba .contForm .izq .alta p.txt1 { font-size:17px; padding-bottom:7px}
 	.contSeccion01 .arriba .contForm .izq .alta p.txt2 { font-size:17px;}
-	.contSeccion01 .arriba .contForm .izq .baja img.prod {right:-10px; bottom:30px}
-	.contSeccion01 .arriba .contForm .izq .baja p.reco { left:auto; right:20px}
+	.contSeccion01 .arriba .contForm .izq .baja img.prod {right:-10px; bottom:70px}
+	.contSeccion01 .arriba .contForm .izq .baja p.reco { left:auto; right:45px; text-align:center}
 
 	.contSeccion01 .arriba .contForm .der p.ingresa { padding:0px 20px}
 	.contSeccion01 .arriba .contForm .der img.codigoBarra {width:90%; max-width:350px}
@@ -450,6 +451,8 @@ input.mandarGano:hover {background-color:#cd3153}
 	.contSeccion01 .abajo .izq01 img.prods {  width:auto; height:90%; margin-top:0px}
 	.contSeccion01 .abajo p.txt02 {font-size:16px; line-height:21px; padding-top:0px}
 	.contSeccion01 .abajo p.masProds {font-size:21px; line-height:24px; margin-top:11px;}
+	
+	p.prox { font-size:23px; line-height:35px; padding-top:20px; position:absolute; width:80%; left:10%}
 }
 
 

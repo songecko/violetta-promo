@@ -18,10 +18,10 @@
                             <img src="<?php echo $view['assets']->getUrl('images/logo1.png') ?>" class="logo">
                             <h4>¡Cepillarse ahora <br>es más divertido!</h4>
                             <p class="txt1">Cargá el código de barras de tu producto</p>
-                            <p class="txt2">y podrás ganar PREMIOS DE VIOLETTA Y GUM*!</p>
+                            <p class="txt2">y podrás ganar PREMIOS DE VIOLETTA Y GUM!</p>
                         </div>
                         <div class="baja">
-                        	<p class="reco">* Recomendado por Odontólogos</p>
+                        	<p class="reco">Recomendado<br>por Odontólogos</p>
                         	<img src="<?php echo $view['assets']->getUrl('images/productos.png') ?>" class="prod">
                         </div>
                     </div>
@@ -65,7 +65,7 @@
 		<div class="contSeccion02">
         	<div class="cont2a">
                 <img src="<?php echo $view['assets']->getUrl('images/logo3.png') ?>" class="logo3">
-                <p class="frase3">¿Todavía no lo tenés? Conseguilo en <a href="http://www.e-farmacity.com/catalogsearch/result/?q=gum" target="_blank">Farmacity</a> , <a href="https://www3.discovirtual.com.ar/Comprar/Home.aspx" target="_blank">Disco Virtual</a> , <a href="https://www.walmartonline.com.ar/Busqueda.aspx?Text=gum&Departamento=Categoria..." target="_blank">Walmart Online</a></p>
+                <p class="frase3">¿Todavía no lo tenés? Conseguilo en <a href="http://www.e-farmacity.com/catalogsearch/result/?q=Gum&lc_brand=283#!2" target="_blank">Farmacity</a> , <a href="https://www3.discovirtual.com.ar/Comprar/Home.aspx" target="_blank">Disco Virtual</a> , <a href="https://www.walmartonline.com.ar/Busqueda.aspx?Text=gum&Departamento=Categoria..." target="_blank">Walmart Online</a></p>
             </div>
             <div class="contSlider">
             	<div class="contFlechas">
