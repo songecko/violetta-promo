@@ -4,6 +4,7 @@ namespace Odiseo\ViolettaPromo\Helpers;
 use Odiseo\ViolettaPromo\Helpers\iUtilHelper;
 use Odiseo\ViolettaPromo\Model\User;
 use Odiseo\ViolettaPromo\Model\UserParticipation;
+use Odiseo\ViolettaPromo\Model\ProductAvailable;
 
 
 class DefaultUtilHelper implements iUtilHelper
@@ -51,8 +52,8 @@ class DefaultUtilHelper implements iUtilHelper
 		$userParticipation = $this->dataProviderService->findParticipationBy($registeredUser->getId(),$validCode->getId(),  $today  );
 		
 		if ($userParticipation != null)//ya participo este día
-		{		
-			return null;
+		{		//////////////////////////////////////
+			return $userParticipation;
 		}
 		else{
 			//registro nueva participación
@@ -70,11 +71,9 @@ class DefaultUtilHelper implements iUtilHelper
 	 * @see \Odiseo\ViolettaPromo\Helpers\iUtilHelper::executeConcourse()
 	 */
 	public function executeConcourse($user, $userParticipation){
-		
 		$participantsQuantity = $this->dataProviderService->countParticipants();
 		
-		$productsAvailability = $this->getProductsAvailability();
-	
+		$productsAvailability = $this->getProductsAvailabilityForConcourse();
 		foreach ($productsAvailability as $prdAvailability) {
 			$productQuantity = $prdAvailability->getQuantity();
 			if ($productQuantity > 0){
@@ -92,26 +91,92 @@ class DefaultUtilHelper implements iUtilHelper
 		return null;
 	}
 	
-	private function getProductsAvailability(){
+	private function getProductsAvailabilityForConcourse(){
 		$allProducst = $this->dataProviderService->findAllProducts();
 		$productsAvailability = array();
 		foreach ($allProducst as $product) {
-			//por configuración siempre hay un registro
-			$lastAvailability = $this->dataProviderService->findProductAvailabilityByProductId($product->getId());
-			$now = new \DateTime();
-			$diff = $now->diff($lastAvailability->getDate());
 			
-			//updateQuantity
-			// si tiene fecha de hoy. Es la cantidad que necesito diff= 0 ==> no suma nada 
-			$newAvailability = $lastAvailability->getQuantity() +  $diff->days * self::PRODUCTS_PER_DAY;
-		    $lastAvailability->setQuantity($newAvailability);
-		    //updateDate to today.
-			$now = new \DateTime();
-			$lastAvailability->setDate($now);
-			$this->dataProviderService->updateProductAvailability($lastAvailability);
-			$productsAvailability[] = $lastAvailability;
+			$productsAvailability[] = $this->getAvailability($product);
+			
 		}
 		return $productsAvailability;
+	}
+	
+	
+	private function getAvailability($product){
+		$now = new \DateTime();
+		if ( $now >= $product->getDateInit() )
+		{		
+			
+		
+			$lastAvailability = $this->dataProviderService->findProductAvailabilityByProductId($product->getId());
+			if ($lastAvailability != null){
+				// si es de hoy,  diff = no hace falta actualizar nada
+				$diff = $now->diff( $lastAvailability->getDate() );
+				if ($diff->days ==  0){
+					return $lastAvailability;
+				}
+					
+				$itShouldBeUpdatedOnDate = $this->calculateLastDateToUpdateInTheory( $product->getDateInit() ,$now, $product->getStep() );
+				$increment = $this->calculateIncrement( $lastAvailability->getDate(),$itShouldBeUpdatedOnDate,$product->getStep(), $product->getIncrement()  );
+				
+				$lastAvailability->setDate($now);
+				$newQuantity = $lastAvailability->getQuantity() + $increment;
+				$lastAvailability->setQuantity($newQuantity);
+				$this->dataProviderService->updateProductAvailability($lastAvailability);
+				return $lastAvailability;
+			}
+
+			else
+			{
+			
+				$itShouldBeUpdatedOnDate = $this->calculateLastDateToUpdateInTheory( $product->getDateInit() ,$now, $product->getStep() );
+				$newIncrement = $this->calculateIncrement( $product->getDateInit(),$itShouldBeUpdatedOnDate,$product->getStep(), $product->getIncrement()  );
+				$lastAvailability = new ProductAvailable();
+				$lastAvailability->setDate($now);
+				$lastAvailability->setProduct($product);
+				$lastAvailability->setQuantity($product->getIncrement() + $newIncrement);
+				$this->dataProviderService->updateProductAvailability($lastAvailability);
+				return $lastAvailability;
+			}
+		}
+		return null;
+	}
+	/**
+	 * @return la ultima fecha dónde se debería haber actualizado de acuerdo a los steps.
+	 * Steps para cd -> "cada dos días"
+	 * steps para mochila -> "cada 6 días". 
+	 */
+	private function calculateLastDateToUpdateInTheory($dateInit, $today, $step){
+		
+		$daysDifference = $today->diff( $dateInit)->days;
+		$restOfDivision = $daysDifference %  $step;
+		$valueToModify = '-'.($restOfDivision).' day';
+		$dateToUpdate = $today->modify($valueToModify);
+		return $dateToUpdate;
+		
+	}
+	
+	/**
+	 * Calcula el incremento en la disponibilidad del producto de acuerdo al "step" y al valueToIncrement
+	 * Cada "6 dias" ( step ) se debe agregar 1(value to increment)  mochila 
+	 * 
+	 * @param unknown $dateInit
+	 * @param unknown $lastDateUpdatedReal
+	 * @param unknown $lastDateToUpdateInTheory
+	 * @param unknown $step
+	 * @param unknown $valueToIncrement
+	 */
+	private function calculateIncrement( $lastDateUpdatedReal, $itShouldBeUpdatedOnDate, $step, $valueToIncrement){
+		 
+		$difference = $lastDateUpdatedReal->diff($itShouldBeUpdatedOnDate)->days;
+		
+		$entire_part = floor($difference / $step);
+		
+		$increment = $entire_part * $valueToIncrement;
+		
+
+		return $increment;
 	}
 
 	
@@ -127,6 +192,7 @@ class DefaultUtilHelper implements iUtilHelper
 		if ($participantsQuantity == 0) return true;
 		$randomRange = $participantsQuantity / $productQuantity;
 		$valueRaffled = rand(0 ,$randomRange );
+		d($valueRaffled);
 		if (  self::VALUE_WINNER == $valueRaffled){
 			return true;
 		}

@@ -13,3 +13,10 @@ Odiseo\ViolettaPromo\Model\Product:
         createdAt:
             type: datetime
             column: created_at
+        dateInit:
+            type: date
+            column: date_init
+        step:
+            type: integer
+        increment:
+            type: integer

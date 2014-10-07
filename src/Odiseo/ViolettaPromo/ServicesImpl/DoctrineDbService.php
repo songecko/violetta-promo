@@ -72,7 +72,7 @@ class DoctrineDbService implements iDataProviderService
 	public function updateProductAvailability($productAvailable)
 	{
 		$em = $this->db->getEntityManager();
-		$em->persist($productAvailable);
+		$em->merge($productAvailable);
 		$em->flush();
 		return $productAvailable;
 	}
