@@ -192,7 +192,6 @@ class DefaultUtilHelper implements iUtilHelper
 		if ($participantsQuantity == 0) return true;
 		$randomRange = $participantsQuantity / $productQuantity;
 		$valueRaffled = rand(0 ,$randomRange );
-		d($valueRaffled);
 		if (  self::VALUE_WINNER == $valueRaffled){
 			return true;
 		}
