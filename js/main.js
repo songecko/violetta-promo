@@ -89,8 +89,10 @@ $(document).ready(function()
 		{
 			if (!$('#terminos1').is(":checked"))
 			{
-				alert('Debes aceptar los Términos y Condiciones para continuar');
+				$('.terminos2').show();
 				return;
+			}else{
+				$('.terminos2').hide();
 			}
 		},
 		submitHandler: function(form)

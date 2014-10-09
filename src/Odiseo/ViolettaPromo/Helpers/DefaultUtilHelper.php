@@ -53,7 +53,7 @@ class DefaultUtilHelper implements iUtilHelper
 		
 		if ($userParticipation != null)//ya participo este día
 		{		//////////////////////////////////////
-			return $userParticipation;
+			return null;
 		}
 		else{
 			//registro nueva participación
@@ -96,7 +96,9 @@ class DefaultUtilHelper implements iUtilHelper
 		$productsAvailability = array();
 		foreach ($allProducst as $product) {
 			
-			$productsAvailability[] = $this->getAvailability($product);
+			$availability = $this->getAvailability($product);
+			if( $availability != null)
+			$productsAvailability[] = $availability;
 			
 		}
 		return $productsAvailability;
