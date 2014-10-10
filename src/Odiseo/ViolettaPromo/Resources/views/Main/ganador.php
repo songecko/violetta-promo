@@ -1,6 +1,6 @@
 <div class="contGanador">
 	<p class="feliz">¡Felicitaciones!</p>
-    <p class="mens">Tu código <span><?php echo $code ?></span> es uno de los <span class="rojo">ganadores</span>. <br>Para recibir tu premio, completá tus datos:</p>
+    <p class="mens">Tu código <span><?php echo $code ?></span> es uno de los <span class="rojo">ganadores</span>. <br>Para coordinar la entrega de tu premio, completá tus datos:</p>
     
     <form name="formGano" id="formGano" class="formGano" method="post" action="<?php echo $view['router']->generate('violetta_update_winner') ?>">
     	<input type="text" placeholder="Nombre completo (como aparece en el DNI)" class="campoGano1" name="winner[fullname]" id="nombre1"
@@ -20,7 +20,8 @@
         <input type="submit" value="ENVIAR MIS DATOS" class="mandarGano">
     </form>
     
-    <p class="mens2">Recordá <span>conservar el envase del producto</span> con el código ganador, y presentar el <span>DNI <br></span>, es necesario para poder entregarte el premio.</p>
+    <p class="mens2">Recordá <span>conservar el envase del producto</span> y tu <span>DNI</span>, <br>son necesarios para poder entregarte el premio.
+    				<br>¿Dudas o consultas? Llamá o escribí a:</p>
     <div class="sesepara">
         <div class="contAtencion" id="primero">
             <img src="<?php echo $view['assets']->getUrl('images/mail.png') ?>" class="icono">

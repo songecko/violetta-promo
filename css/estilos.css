@@ -175,7 +175,7 @@ p.prox {font-family: 'din-mediumregular'; color:#f82452; font-size:27px; line-he
 .contGanador p.mens {font-family: 'din-lightregular'; color:#919191; font-size:18px; padding-top: 20px; line-height:22px}
 .contGanador .sesepara {width:85%; height:40px; border-top:1px solid #EEE; margin:auto; margin-top:12px; margin-bottom:10px; clear:both}
 .contGanador .sesepara #primero { margin-left:105px}
-.contGanador p.mens2 {font-family: 'din-lightregular'; color:#919191; font-size:17px; padding-top: 12px; line-height:20px}
+.contGanador p.mens2 {font-family: 'din-lightregular'; color:#919191; font-size:17px; padding-top: 12px; line-height:18px}
 .contAtencion {width:200px; height:30px; float:left; margin:10px}
 .contAtencion img.icono {float:left; width:30px}
 .contGanador p.mens3 {font-family: 'din-lightregular'; color:#999; font-size:16px; padding-top: 4px; line-height:20px; float:left; margin-left:4px}
@@ -196,9 +196,9 @@ input.campoGano3b { font-family: 'din-lightregular'; color:#9d9d9d; font-size:22
 input.campoGano3berror { font-family: 'din-lightregular'; color:#9d9d9d; font-size:22px; height:50px; padding-left:10px; border:1px solid red; width:376px; margin-bottom:12px}
 input.mandarGano { font-family: 'din-mediumregular'; color:#FFF; background-color:#f82452; font-size:18px; height:55px; border:1px solid #f82452; width:610px; margin-bottom:12px; padding-top:3px; cursor:pointer;  -webkit-appearance: none;}
 input.mandarGano:hover {background-color:#cd3153}
-.contGanador img.logoGano {width:100px; float:left; margin-left:60px; margin-top:20px}
+.contGanador img.logoGano {width:100px; float:left; margin-left:60px; margin-top:8px}
 .contGanador img.logoPerdio {width:100px; margin-left:0px; margin-top:40px}
-.contGanador img.imprimir {width:128px; float:right; margin-right:60px; margin-top:32px}
+.contGanador img.imprimir {width:128px; float:right; margin-right:60px; margin-top:20px}
 
 
 

@@ -64,7 +64,7 @@ class MainController extends Controller
 		}
 		else{ //mostrare mensaje de error "codigo invalido".
 			$view = $this->templating->render('Main/errorParticipating.php', array(
-					'message' => "El código ingresado es inválido",
+					'message' => "El código ingresado no es valido. ¡Volvé a intentarlo!",
 			));
 		}
 		
