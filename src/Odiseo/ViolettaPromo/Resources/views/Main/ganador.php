@@ -1,6 +1,10 @@
 <div class="contGanador">
 	<p class="feliz">¡Felicitaciones!</p>
-    <p class="mens">Tu código <span><?php echo $code ?></span> es uno de los <span class="rojo">ganadores</span>. <br>Para coordinar la entrega de tu premio, completá tus datos:</p>
+    <p class="mens">
+    	Tu código <span><?php echo $code ?></span> es uno de los <span class="rojo">ganadores</span>. Tu premio es 1 <?php echo $winProduct->getName() ?>. 
+    	<br>
+    	Para coordinar la entrega de tu premio, completá tus datos:
+    </p>
     
     <form name="formGano" id="formGano" class="formGano" method="post" action="<?php echo $view['router']->generate('violetta_update_winner') ?>">
     	<input type="text" placeholder="Nombre completo (como aparece en el DNI)" class="campoGano1" name="winner[fullname]" id="nombre1"

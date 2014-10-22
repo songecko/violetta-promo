@@ -51,6 +51,7 @@ class MainController extends Controller
 					$view = $this->templating->render('Main/ganador.php', array(
 							'code' => $code,
 							'dni' => $dni,
+							'winProduct' => $winProduct
 					));
 				}
 				else
